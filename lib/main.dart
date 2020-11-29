@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:senior_project/colors.dart';
+import 'package:senior_project/style.dart';
+import 'package:senior_project/textFieldContainer.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Project',
       theme: ThemeData(
-        scaffoldBackgroundColor: kBackgroundcolor,
+        scaffoldBackgroundColor: kBackgroundColor,
         textTheme: TextTheme(bodyText1: TextStyle(color: kBodyTextColor),
 
         ),
@@ -23,12 +24,12 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: HomeScreen(),
+      home: MainScreen(),
     );
   }
 }
 
-class HomeScreen extends StatelessWidget {
+class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,6 +38,7 @@ class HomeScreen extends StatelessWidget {
           ClipPath(
             clipper: MyClipper(),
             child: Container(
+              padding: EdgeInsets.only(left: 40, top: 30, right: 70),
               height: 350,
               width: double.infinity,
               decoration: BoxDecoration(
@@ -48,9 +50,58 @@ class HomeScreen extends StatelessWidget {
                         Color(0xFF11249F),
                       ]
                   ),
-                  image: DecorationImage(
-                    image: AssetImage("assets/images/mainPage_carImage.png"),
+              ),
+              child: Column(
+                children: <Widget>[
+                  Expanded(
+                      child: Stack(
+                        children: <Widget>[
+                          Image.asset("assets/images/mainPage_carImage.png",
+                            width: 300
+                          ),
+                          Positioned(
+                            top: 40,
+                            left: 90,
+                            child: Text("CarInfo KG",
+                             style: kHeadingTextStyle.copyWith(
+                               color: Colors.yellow[50],
+                             ),
+                            ),
+                          )
+                        ],
+                      )
                   )
+                ],
+              ),
+            ),
+          ),
+            Text(
+              "Узнайте информацию о любом авто в Кыргызстане.",
+              style: TextStyle(color: Colors.grey[700], fontFamily: "Poppins", fontWeight: FontWeight.w200, fontSize: 14),
+            ),
+          TextFieldContainer(child: TextField(
+            decoration: InputDecoration(
+              icon: Icon(Icons.search),
+              hintText: "Введите госномер",
+              border: InputBorder.none
+            ),
+          ),),
+          Container(
+            height: 50,
+            margin: EdgeInsets.symmetric(horizontal: 85),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(50),
+              color: Colors.blue[800],
+            ),
+            child: Center(
+              child: Text(
+                "Искать",
+                style: TextStyle(
+                    fontFamily: "Poppins",
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                    color: Colors.white
+                ),
               ),
             ),
           )
@@ -64,9 +115,9 @@ class MyClipper extends CustomClipper<Path>{
   @override
   Path getClip(Size size) {
     var path = Path();
-    path.lineTo(0, size.height - 80);
+    path.lineTo(0, size.height - 95);
     path.quadraticBezierTo(
-        size.width/8, size.height/2, size.width, size.height - 80);
+        size.width/2, size.height/2, size.width, size.height - 85);
     path.lineTo(size.width, 0);
     path.close();
     return path;
