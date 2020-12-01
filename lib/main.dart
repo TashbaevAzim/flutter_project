@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:senior_project/style.dart';
 import 'package:senior_project/textFieldContainer.dart';
 import 'package:flutter/material.dart';
@@ -33,6 +34,7 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: BottomNavigationBar(),
       body: Column(
         children: <Widget>[
           ClipPath(
@@ -105,6 +107,69 @@ class MainScreen extends StatelessWidget {
               ),
             ),
           )
+        ],
+      ),
+    );
+  }
+}
+
+class BottomNavigationBar extends StatelessWidget {
+  const BottomNavigationBar({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 45, vertical: 10),
+      height: 70,
+      color: Colors.blue[800],
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          BottomNavigationItem(
+            title: "Главная",
+            svgIcon: "assets/icons/home.svg",
+            isActive: true,
+          ),
+          BottomNavigationItem(
+            title: "Объявления",
+            svgIcon: "assets/icons/search.svg",
+          ),
+          BottomNavigationItem(
+            title: "Избранное",
+            svgIcon: "assets/icons/bookmark.svg",
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class BottomNavigationItem extends StatelessWidget {
+  final String svgIcon;
+  final String title;
+  final Function click;
+  final bool isActive;
+  const BottomNavigationItem({
+    Key key, this.svgIcon, this.title, this.click, this.isActive = false,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: click,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: <Widget>[
+          SvgPicture.asset(
+            svgIcon,
+              color: isActive ? kTitleTextColor : kBackgroundColor
+          ),
+          Text(
+            title,
+            style: TextStyle(color: isActive ? kTitleTextColor : kBackgroundColor),
+          ),
         ],
       ),
     );
