@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:senior_project/routes/search_auto_result.dart';
 import 'package:senior_project/style.dart';
 import 'package:senior_project/textFieldContainer.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,8 @@ void main() {
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
+
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -25,16 +28,46 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MainScreen(),
+      home: Home(),
     );
   }
 }
 
-class MainScreen extends StatelessWidget {
+class Home extends StatefulWidget {
+    @override
+    HomePage createState() => HomePage();
+}
+
+int curIndex = 0;
+
+class HomePage extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: curIndex,
+        type: BottomNavigationBarType.fixed,
+        iconSize: 35,
+        items: [
+          BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              title: Text("Главная"),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            title: Text("Объявления"),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.bookmark_border),
+            title: Text("Избранное"),
+          ),
+        ],
+        onTap: (index) {
+          setState(() {
+            curIndex = index;
+          });
+        },
+      ),
       body: Column(
         children: <Widget>[
           ClipPath(
@@ -79,7 +112,11 @@ class MainScreen extends StatelessWidget {
           ),
             Text(
               "Узнайте информацию о любом авто в Кыргызстане.",
-              style: TextStyle(color: Colors.grey[700], fontFamily: "Poppins", fontWeight: FontWeight.w200, fontSize: 14),
+              style: TextStyle(
+                  color: Colors.grey[700],
+                  fontFamily: "Poppins",
+                  fontWeight: FontWeight.w200,
+                  fontSize: 14),
             ),
           TextFieldContainer(child: TextField(
             decoration: InputDecoration(
@@ -93,16 +130,35 @@ class MainScreen extends StatelessWidget {
             margin: EdgeInsets.symmetric(horizontal: 85),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(50),
+              boxShadow: [
+                BoxShadow(
+                  offset: Offset(0, 20),
+                  blurRadius: 20,
+                  spreadRadius: -20
+                )
+              ],
               color: Colors.blue[800],
             ),
-            child: Center(
-              child: Text(
-                "Искать",
-                style: TextStyle(
-                    fontFamily: "Poppins",
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                    color: Colors.white
+            child: Material(
+              color: Colors.transparent,
+              child: InkWell(
+                onTap: () {Navigator.push(context, MaterialPageRoute(builder: (context){return SearchAutoResult();
+                }),
+                );
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Center(
+                    child: Text(
+                      "Искать",
+                      style: TextStyle(
+                          fontFamily: "Poppins",
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                          color: kBackgroundColor
+                      ),
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -113,68 +169,68 @@ class MainScreen extends StatelessWidget {
   }
 }
 
-class BottomNavigationBar extends StatelessWidget {
-  const BottomNavigationBar({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 45, vertical: 10),
-      height: 70,
-      color: Colors.blue[800],
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          BottomNavigationItem(
-            title: "Главная",
-            svgIcon: "assets/icons/home.svg",
-            isActive: true,
-          ),
-          BottomNavigationItem(
-            title: "Объявления",
-            svgIcon: "assets/icons/search.svg",
-          ),
-          BottomNavigationItem(
-            title: "Избранное",
-            svgIcon: "assets/icons/bookmark.svg",
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class BottomNavigationItem extends StatelessWidget {
-  final String svgIcon;
-  final String title;
-  final Function click;
-  final bool isActive;
-  const BottomNavigationItem({
-    Key key, this.svgIcon, this.title, this.click, this.isActive = false,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: click,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: <Widget>[
-          SvgPicture.asset(
-            svgIcon,
-              color: isActive ? kTitleTextColor : kBackgroundColor
-          ),
-          Text(
-            title,
-            style: TextStyle(color: isActive ? kTitleTextColor : kBackgroundColor),
-          ),
-        ],
-      ),
-    );
-  }
-}
+// class BottomNavigationBar extends StatelessWidget {
+//   const BottomNavigationBar({
+//     Key key,
+//   }) : super(key: key);
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       padding: EdgeInsets.symmetric(horizontal: 45, vertical: 10),
+//       height: 70,
+//       color: Colors.blue[800],
+//       child: Row(
+//         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//         children: <Widget>[
+//           BottomNavigationItem(
+//             title: "Главная",
+//             svgIcon: "assets/icons/home.svg",
+//             isActive: true,
+//           ),
+//           BottomNavigationItem(
+//             title: "Объявления",
+//             svgIcon: "assets/icons/search.svg",
+//           ),
+//           BottomNavigationItem(
+//             title: "Избранное",
+//             svgIcon: "assets/icons/bookmark.svg",
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
+//
+// class BottomNavigationItem extends StatelessWidget {
+//   final String svgIcon;
+//   final String title;
+//   final Function click;
+//   final bool isActive;
+//   const BottomNavigationItem({
+//     Key key, this.svgIcon, this.title, this.click, this.isActive = false,
+//   }) : super(key: key);
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return GestureDetector(
+//       onTap: click,
+//       child: Column(
+//         mainAxisAlignment: MainAxisAlignment.spaceAround,
+//         children: <Widget>[
+//           SvgPicture.asset(
+//             svgIcon,
+//               color: isActive ? kTitleTextColor : kBackgroundColor
+//           ),
+//           Text(
+//             title,
+//             style: TextStyle(color: isActive ? kTitleTextColor : kBackgroundColor),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
 
 class MyClipper extends CustomClipper<Path>{
   @override
