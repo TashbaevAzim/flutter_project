@@ -14,6 +14,14 @@ class _SearchAdsPageState extends State<SearchAdsPage> {
         centerTitle: true,
         backgroundColor: Colors.blue[800],
       ),
+
+      // body: ListView(
+      //   children: <Widget>[
+      //     Padding(
+      //         padding: const EdgeInsets.all(16.0))
+      //   ],
+      // ),
+
       body: Container(
         alignment: Alignment.center,
         child: Text(

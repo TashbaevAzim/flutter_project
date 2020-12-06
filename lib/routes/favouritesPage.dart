@@ -23,7 +23,6 @@ class _FavouritesPageState extends State<FavouritesPage> {
           ),
         ),
       ) //
-
     );
   }
 }

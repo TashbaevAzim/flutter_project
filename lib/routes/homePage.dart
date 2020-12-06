@@ -17,7 +17,7 @@ class _HomePageState extends State<HomePage> {
           ClipPath(
             clipper: MyClipper(),
             child: Container(
-              padding: EdgeInsets.only(left: 40, top: 30, right: 70),
+              padding: EdgeInsets.only(left: 45, top: 45, right: 70),
               height: 350,
               width: double.infinity,
               decoration: BoxDecoration(
@@ -39,8 +39,8 @@ class _HomePageState extends State<HomePage> {
                               width: 300
                           ),
                           Positioned(
-                            top: 40,
-                            left: 90,
+                            top: 30,
+                            left: 80,
                             child: Text("CarInfo KG",
                               style: kHeadingTextStyle.copyWith(
                                 color: Colors.yellow[50],
