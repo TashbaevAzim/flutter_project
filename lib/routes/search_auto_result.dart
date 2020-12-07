@@ -1,6 +1,14 @@
+import 'dart:ui';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:senior_project/carInfo.dart';
+import 'package:senior_project/style.dart';
+
+import 'car_details_page.dart';
 
 class SearchAutoResult extends StatelessWidget {
+  List<CarInfo> carList = CarInfo.list;
 
   @override
   Widget build(BuildContext context) {
@@ -13,76 +21,124 @@ class SearchAutoResult extends StatelessWidget {
         elevation: 8.0,
       ),
 
-        body: Card(
-          child: Container(
-            margin: EdgeInsets.all(20),
-            height: 70,
-            width: 400,
-            // color: Colors.blue[800],
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  "Информация об авто",
-                  style: TextStyle(
-                    fontSize: 20
-                  ),
-                ),
-                Text("01KG123ACP",
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold
-                  ),
-                ),
-              ],
-            ),
-          ),
-          elevation: 15.0,
-        ),
+      body: Column(
+        children: <Widget>[
+          Expanded(
+              child: ListView(
+                children: <Widget>[
+                  ListView.builder(
+                    shrinkWrap: true,
+                    physics: ClampingScrollPhysics(),
+                    padding: EdgeInsets.only(
+                      left: 10,
+                      right: 10,
+                      bottom: 10,
+                      top: 10,
+                    ),
+                    itemCount: carList.length,
+                    itemBuilder: (context, index) {
+                    return Container(
+                        padding: EdgeInsets.all(15),
+                        margin: EdgeInsets.only(
+                          bottom: 10,
+                        ),
+                        decoration: BoxDecoration(
+                          color: kTextLightColor,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(10),
+                            bottomLeft: Radius.circular(10),
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.5),
+                              spreadRadius: 3,
+                              blurRadius: 5,
+                              offset: Offset(0, 3),
+                            ),
+                          ],
+                        ),
+                        child: Material(
+                          color: Colors.transparent,
+                          child: InkWell(
+                            onTap: () {Navigator.push(context, MaterialPageRoute(builder: (context){return CarDetailsPage();
+                            }),
+                            );
+                            },
+                            child: Row(
+                              children: <Widget>[
+                                Image(
+                                  width: 65,
+                                  image: AssetImage("assets/images/carIconCard.png"),
+                                ),
+                                SizedBox(width: 15),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Text(
+                                      "Информация об авто",
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold
+                                      ),
+                                    ),
+                                    SizedBox(height: 5),
+                                    Text(
+                                      "${carList[index].govNumber}",
+                                      style: TextStyle(
+                                        fontSize: 18
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(width: 25),
+                                Icon(
+                                  Icons.read_more,
+                                  size: 35
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                    );
+                  },),
+                ],
+              )
+          )
+        ],
+      ),
+
     );
 
-        // body: Card(
-        //   shape: RoundedRectangleBorder(
-        //     borderRadius: BorderRadius.circular(0.0),
-        //   ),
-        //   elevation: 7.0,
-        //   child: Container(
-        //     width: MediaQuery.of(context).size.width,
-        //     padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
-        //     child: Row(
-        //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        //       crossAxisAlignment: CrossAxisAlignment.start,
-        //       children: <Widget>[
-        //         Row(
-        //           crossAxisAlignment: CrossAxisAlignment.start,
-        //           children: <Widget>[
-        //             SizedBox(width: 5.0),
-        //             Column(
-        //               crossAxisAlignment: CrossAxisAlignment.start,
-        //               children: <Widget>[
-        //                 Icon(
-        //                   Icons.car_repair,
-        //                 ),
-        //                 Text(
-        //                   "Информация об авто",
-        //                   style: TextStyle(
-        //                     color: Colors.blue[800],
-        //                     fontSize: 19.0,
-        //                     fontWeight: FontWeight.bold,
-        //                   ),
-        //                 )
-        //               ],
-        //             )
-        //           ],
-        //         ),
-        //         Container(),
-        //       ],
-        //     ),
-        //   ),
-        //
-        // ),
+    // body: Card(
+    //   child: Container(
+    //     margin: EdgeInsets.all(20),
+    //     height: 70,
+    //     width: 400,
+    //     // color: Colors.blue[800],
+    //     child: Column(
+    //       crossAxisAlignment: CrossAxisAlignment.start,
+    //       children: <Widget>[
+    //         Text(
+    //           "Информация об авто",
+    //           style: TextStyle(
+    //             fontSize: 20
+    //           ),
+    //         ),
+    //         Text("01KG123ACP",
+    //           style: TextStyle(
+    //             fontSize: 18,
+    //             fontWeight: FontWeight.bold
+    //           ),
+    //         ),
+    //       ],
+    //     ),
+    //   ),
+    //   elevation: 15.0,
+    // ),
+    //
 
-        // body: Container(
+
+    // body: Container(
         //   alignment: Alignment.center,
         //   child: Text(
         //     "По данному номеру авто не обнаружено.",

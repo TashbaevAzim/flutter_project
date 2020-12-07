@@ -62,13 +62,15 @@ class _HomePageState extends State<HomePage> {
                 fontWeight: FontWeight.w200,
                 fontSize: 14),
           ),
-          TextFieldContainer(child: TextField(
-            decoration: InputDecoration(
+          TextFieldContainer(
+            child: TextField(
+              decoration: InputDecoration(
                 icon: Icon(Icons.search),
                 hintText: "Введите госномер",
                 border: InputBorder.none
+              ),
             ),
-          ),),
+          ),
           Container(
             height: 50,
             margin: EdgeInsets.symmetric(horizontal: 85),
