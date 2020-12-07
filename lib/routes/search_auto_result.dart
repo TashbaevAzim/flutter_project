@@ -44,10 +44,7 @@ class SearchAutoResult extends StatelessWidget {
                         ),
                         decoration: BoxDecoration(
                           color: kTextLightColor,
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(10),
-                            bottomLeft: Radius.circular(10),
-                          ),
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
                           boxShadow: [
                             BoxShadow(
                               color: Colors.grey.withOpacity(0.5),
@@ -60,10 +57,11 @@ class SearchAutoResult extends StatelessWidget {
                         child: Material(
                           color: Colors.transparent,
                           child: InkWell(
-                            onTap: () {Navigator.push(context, MaterialPageRoute(builder: (context){return CarDetailsPage();
+                            onTap: () {Navigator.push(context, MaterialPageRoute(builder: (context){return CarDetailsPage(carList[index]);
                             }),
                             );
                             },
+                            //                            onTap: () {Navigator.of(context).push(MaterialPageRoute (builder: (_) => CarDetailsPage(carList[index]),
                             child: Row(
                               children: <Widget>[
                                 Image(
@@ -92,7 +90,7 @@ class SearchAutoResult extends StatelessWidget {
                                 ),
                                 SizedBox(width: 25),
                                 Icon(
-                                  Icons.read_more,
+                                  Icons.keyboard_arrow_right,
                                   size: 35
                                 )
                               ],
@@ -109,43 +107,5 @@ class SearchAutoResult extends StatelessWidget {
 
     );
 
-    // body: Card(
-    //   child: Container(
-    //     margin: EdgeInsets.all(20),
-    //     height: 70,
-    //     width: 400,
-    //     // color: Colors.blue[800],
-    //     child: Column(
-    //       crossAxisAlignment: CrossAxisAlignment.start,
-    //       children: <Widget>[
-    //         Text(
-    //           "Информация об авто",
-    //           style: TextStyle(
-    //             fontSize: 20
-    //           ),
-    //         ),
-    //         Text("01KG123ACP",
-    //           style: TextStyle(
-    //             fontSize: 18,
-    //             fontWeight: FontWeight.bold
-    //           ),
-    //         ),
-    //       ],
-    //     ),
-    //   ),
-    //   elevation: 15.0,
-    // ),
-    //
-
-
-    // body: Container(
-        //   alignment: Alignment.center,
-        //   child: Text(
-        //     "По данному номеру авто не обнаружено.",
-        //     style: TextStyle(
-        //     fontSize: 17,
-        //     ),
-        //   ),
-        // ), //
   }
 }

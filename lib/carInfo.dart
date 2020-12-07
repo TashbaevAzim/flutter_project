@@ -11,6 +11,7 @@ class CarInfo {
   final bool pledge;
   final bool fines;
   final String periodsOfOwnerships;
+  final bool ad;
 
   CarInfo (
       { this.govNumber,
@@ -22,7 +23,8 @@ class CarInfo {
         this.volume,
         this.pledge,
         this.fines,
-        this.periodsOfOwnerships
+        this.periodsOfOwnerships,
+        this.ad
       });
 
   static List<CarInfo> list = [
@@ -36,19 +38,21 @@ class CarInfo {
       volume: 3456,
       pledge: false,
       fines: false,
-      periodsOfOwnerships: "26.05.2014 - 04.04.2018 \n 04.04.2018 - настоящее время"
+      periodsOfOwnerships: "26.05.2014 - 04.04.2018 \n 04.04.2018 - настоящее время",
+      ad: false
     ),
     CarInfo(
         govNumber: "01KG321ABD",
-        brand: "Toyota",
-        model: "Highlander",
+        brand: "Subaru",
+        model: "Outback",
         year: 2010,
         color: "Белый",
         steeringWheel: "Левый",
         volume: 3456,
-        pledge: false,
-        fines: false,
-        periodsOfOwnerships: "26.05.2014 - 04.04.2018 \n 04.04.2018 - настоящее время"
+        pledge: true,
+        fines: true,
+        periodsOfOwnerships: "26.05.2014 - 04.04.2018 \n 04.04.2018 - настоящее время",
+        ad: true
     )
   ];
 }
