@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:senior_project/style.dart';
 import 'package:senior_project/carInfo.dart';
-import 'package:senior_project/textFieldContainer.dart';
 
 class CarDetailsPage extends StatefulWidget {
   final CarInfo datas;

@@ -82,26 +82,27 @@ class SearchAutoResult extends StatelessWidget {
                                 image: AssetImage("assets/images/carIconCard.png"),
                               ),
                               SizedBox(width: 15),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Text(
-                                    "Информация об авто",
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Text(
+                                      "Информация об авто",
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold
+                                      ),
                                     ),
-                                  ),
-                                  SizedBox(height: 5),
-                                  Text(
-                                    "${carList[index].govNumber}",
-                                    style: TextStyle(
-                                      fontSize: 18
+                                    SizedBox(height: 5),
+                                    Text(
+                                      "${carList[index].govNumber}",
+                                      style: TextStyle(
+                                        fontSize: 18
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
-                              SizedBox(width: 25),
                               Icon(
                                 Icons.keyboard_arrow_right,
                                 size: 35

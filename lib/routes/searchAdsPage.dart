@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:senior_project/carInfo.dart';
 
 import '../style.dart';
-import 'car_details_page.dart';
+import 'ads_details_page.dart';
 
 class SearchAdsPage extends StatefulWidget {
   @override
@@ -66,7 +66,7 @@ class _SearchAdsPageState extends State<SearchAdsPage> {
                         child: Material(
                           color: Colors.transparent,
                           child: InkWell(
-                            onTap: () {Navigator.push(context, MaterialPageRoute(builder: (context){return CarDetailsPage(carAdsList[index]);
+                            onTap: () {Navigator.push(context, MaterialPageRoute(builder: (context){return AdsDetailsPage(carAdsList[index]);
                             }),
                             );
                             },
@@ -78,29 +78,31 @@ class _SearchAdsPageState extends State<SearchAdsPage> {
                                   image: AssetImage("assets/images/carIconCard.png"),
                                 ),
                                 SizedBox(width: 15),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Text(
-                                      "Ищу владельца авто",
-                                      style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(
+                                        "${carAdsList[index].adTitle}",
+                                        style: TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold
+                                        ),
                                       ),
-                                    ),
-                                    SizedBox(height: 5),
-                                    Text(
-                                      "${carAdsList[index].govNumber}",
-                                      style: TextStyle(
-                                          fontSize: 18
+                                      SizedBox(height: 5),
+                                      Text(
+                                        "${carAdsList[index].govNumber}",
+                                        style: TextStyle(
+                                            fontSize: 18
+                                        ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
-                                SizedBox(width: 25),
                                 Icon(
                                     Icons.keyboard_arrow_right,
-                                    size: 35
+                                    size: 35,
+
                                 )
                               ],
                             ),

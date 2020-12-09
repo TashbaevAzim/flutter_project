@@ -12,6 +12,8 @@ class CarInfo {
   final bool fines;
   final String periodsOfOwnerships;
   final bool ad;
+  final String adTitle;
+  final String adDescription;
 
   CarInfo (
       { this.govNumber,
@@ -24,7 +26,9 @@ class CarInfo {
         this.pledge,
         this.fines,
         this.periodsOfOwnerships,
-        this.ad
+        this.ad,
+        this.adTitle,
+        this.adDescription
       });
 
   static List<CarInfo> list = [
@@ -39,7 +43,9 @@ class CarInfo {
       pledge: false,
       fines: false,
       periodsOfOwnerships: "26.05.2014 - 04.04.2018 \n 04.04.2018 - настоящее время",
-      ad: false
+      ad: true,
+      adTitle: "Ищу владельца авто",
+      adDescription: "Добрый день, ищу владельца авто, просьба обращаться по номеру +996700999777"
     ),
     CarInfo(
         govNumber: "01KG321ABD",
@@ -52,7 +58,9 @@ class CarInfo {
         pledge: true,
         fines: true,
         periodsOfOwnerships: "26.05.2014 - 04.04.2018 \n 04.04.2018 - настоящее время",
-        ad: true
+        ad: true,
+        adTitle: "Продаю авто",
+        adDescription: "Добрый день, продаю авто! Обращаться по номеру +996700777999"
     )
   ];
 }
